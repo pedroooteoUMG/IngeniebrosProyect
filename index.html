@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicaciones de la Derivada: Razones de Cambio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax para ecuaciones matemáticas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Aplicaciones de la Derivada: Razones de Cambio</h1>
+        <p>Simulaciones interactivas para entender las aplicaciones de la derivada en problemas reales</p>
+        <p>Universidad Mariano Galvez</p>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <div class="logo"></div>
+            <div class="menu-icon" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="#velocidad" class="nav-link">Velocidad y Aceleración</a></li>
+                <li><a href="#globo" class="nav-link">Expansión de un Globo</a></li>
+                <li><a href="#pitagoras" class="nav-link">Movimiento con Pitágoras</a></li>
+                <li><a href="#optimizacion" class="nav-link">Optimización de Producción</a></li>
+                <li><a href="#enfermedad" class="nav-link">Propagación de Enfermedad</a></li>
+                <li><a href="#temperatura" class="nav-link">Control de Temperatura</a></li>
+                <li><a href="#poblacion" class="nav-link">Dinámica de Poblaciones</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <!-- Sección 1: Velocidad y Aceleración -->
+        <section id="velocidad" class="aplicacion">
+            <h2>1. Velocidad y Aceleración de un Vehículo</h2>
+            <div class="teoria">
+                <h3>Fundamento Teórico</h3>
+                <p>La velocidad es la derivada de la posición respecto al tiempo, y la aceleración es la derivada de la velocidad (o segunda derivada de la posición):</p>
+                <p class="formula">
+                    \(v(t) = \frac{ds}{dt}\) y \(a(t) = \frac{dv}{dt} = \frac{d^2s}{dt^2}\)
+                </p>
+            </div>
+            <div class="simulacion">
+                <h3>Simulación</h3>
+                <div class="controles">
+                    <label for="funcion-posicion">Función de posición s(t):</label>
+                    <select id="funcion-posicion">
+                        <option value="lineal">Lineal: s(t) = 10t</option>
+                        <option value="cuadratica">Cuadrática: s(t) = 5t² + 2t</option>
+                        <option value="cubica">Cúbica: s(t) = t³ - 3t² + 2t</option>
+                    </select>
+                    <button id="iniciar-velocidad">Iniciar Simulación</button>
+                </div>
+                <div class="grafico-container">
+                    <canvas id="grafico-velocidad"></canvas>
+                </div>
+                <div class="resultados">
+                    <div class="resultado-item">
+                        <h4>Posición:</h4>
+                        <p id="valor-posicion">0 m</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Velocidad:</h4>
+                        <p id="valor-velocidad">0 m/s</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Aceleración:</h4>
+                        <p id="valor-aceleracion">0 m/s²</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Expansión de un Globo -->
+        <section id="globo" class="aplicacion">
+            <h2>2. Expansión de un Globo</h2>
+            <div class="teoria">
+                <h3>Fundamento Teórico</h3>
+                <p>Para un globo esférico, el volumen está relacionado con el radio mediante:</p>
+                <p class="formula">
+                    \(V = \frac{4}{3}\pi r^3\)
+                </p>
+                <p>Si el radio cambia con el tiempo, podemos calcular la tasa de cambio del volumen:</p>
+                <p class="formula">
+                    \(\frac{dV}{dt} = \frac{dV}{dr} \cdot \frac{dr}{dt} = 4\pi r^2 \cdot \frac{dr}{dt}\)
+                </p>
+            </div>
+            <div class="simulacion">
+                <h3>Simulación</h3>
+                <div class="controles">
+                    <label for="tasa-inflado">Tasa de inflado (dr/dt):</label>
+                    <input type="range" id="tasa-inflado" min="0.1" max="2" step="0.1" value="0.5">
+                    <span id="valor-tasa-inflado">0.5 cm/s</span>
+                    <button id="iniciar-globo">Iniciar Simulación</button>
+                </div>
+                <div class="visualizacion">
+                    <div id="globo-animacion"></div>
+                    <div class="grafico-container">
+                        <canvas id="grafico-globo"></canvas>
+                    </div>
+                </div>
+                <div class="resultados">
+                    <div class="resultado-item">
+                        <h4>Radio:</h4>
+                        <p id="valor-radio">0 cm</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Volumen:</h4>
+                        <p id="valor-volumen">0 cm³</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Tasa de cambio del volumen:</h4>
+                        <p id="tasa-volumen">0 cm³/s</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: Movimiento con Teorema de Pitágoras -->
+        <section id="pitagoras" class="aplicacion">
+            <h2>3. Movimiento usando el Teorema de Pitágoras</h2>
+            <div class="teoria">
+                <h3>Fundamento Teórico</h3>
+                <p>Consideremos un barco que se aleja de la costa a una velocidad constante y un observador que se mueve a lo largo de la costa. La distancia entre ellos se puede calcular usando el teorema de Pitágoras:</p>
+                <p class="formula">
+                    \(d^2 = x^2 + y^2\)
+                </p>
+                <p>Donde \(x\) es la distancia del barco a la costa y \(y\) es la distancia del observador al punto más cercano al barco. La tasa de cambio de la distancia es:</p>
+                <p class="formula">
+                    \(\frac{dd}{dt} = \frac{x \cdot \frac{dx}{dt} + y \cdot \frac{dy}{dt}}{d}\)
+                </p>
+            </div>
+            <div class="simulacion">
+                <h3>Simulación</h3>
+                <div class="controles">
+                    <label for="velocidad-barco">Velocidad del barco (dx/dt):</label>
+                    <input type="range" id="velocidad-barco" min="1" max="10" step="1" value="5">
+                    <span id="valor-velocidad-barco">5 m/s</span>
+                    
+                    <label for="velocidad-observador">Velocidad del observador (dy/dt):</label>
+                    <input type="range" id="velocidad-observador" min="0" max="10" step="1" value="3">
+                    <span id="valor-velocidad-observador">3 m/s</span>
+                    
+                    <button id="iniciar-pitagoras">Iniciar Simulación</button>
+                </div>
+                <div class="visualizacion">
+                    <div id="pitagoras-animacion"></div>
+                    <div class="grafico-container">
+                        <canvas id="grafico-pitagoras"></canvas>
+                    </div>
+                </div>
+                <div class="resultados">
+                    <div class="resultado-item">
+                        <h4>Distancia barco-costa:</h4>
+                        <p id="distancia-x">0 m</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Posición del observador:</h4>
+                        <p id="posicion-y">0 m</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Distancia total:</h4>
+                        <p id="distancia-total">0 m</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Tasa de cambio de la distancia:</h4>
+                        <p id="tasa-distancia">0 m/s</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: Optimización de Producción -->
+        <section id="optimizacion" class="aplicacion">
+            <h2>4. Optimización de la Producción en una Empresa</h2>
+            <div class="teoria">
+                <h3>Fundamento Teórico</h3>
+                <p>En economía, la función de costo total \(C(q)\) representa el costo de producir \(q\) unidades. El costo marginal es la derivada de esta función:</p>
+                <p class="formula">
+                    \(C'(q) = \frac{dC}{dq}\)
+                </p>
+                <p>De manera similar, si \(R(q)\) es la función de ingreso, el ingreso marginal es \(R'(q)\). La ganancia se maximiza cuando el ingreso marginal iguala al costo marginal:</p>
+                <p class="formula">
+                    \(R'(q) = C'(q)\)
+                </p>
+            </div>
+            <div class="simulacion">
+                <h3>Simulación</h3>
+                <div class="controles">
+                    <label for="funcion-costo">Función de costo:</label>
+                    <select id="funcion-costo">
+                        <option value="cuadratica">Cuadrática: C(q) = 0.01q² + 5q + 100</option>
+                        <option value="cubica">Cúbica: C(q) = 0.001q³ - 0.1q² + 10q + 200</option>
+                    </select>
+                    
+                    <label for="funcion-ingreso">Función de ingreso:</label>
+                    <select id="funcion-ingreso">
+                        <option value="lineal">Lineal: R(q) = 20q</option>
+                        <option value="cuadratica">Cuadrática: R(q) = -0.05q² + 30q</option>
+                    </select>
+                    
+                    <button id="calcular-optimizacion">Calcular Punto Óptimo</button>
+                </div>
+                <div class="grafico-container">
+                    <canvas id="grafico-optimizacion"></canvas>
+                </div>
+                <div class="resultados">
+                    <div class="resultado-item">
+                        <h4>Cantidad óptima:</h4>
+                        <p id="cantidad-optima">0 unidades</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Costo total:</h4>
+                        <p id="costo-total">$0</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Ingreso total:</h4>
+                        <p id="ingreso-total">$0</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Ganancia:</h4>
+                        <p id="ganancia">$0</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 5: Propagación de Enfermedad -->
+        <section id="enfermedad" class="aplicacion">
+            <h2>5. Propagación de una Enfermedad</h2>
+            <div class="teoria">
+                <h3>Fundamento Teórico</h3>
+                <p>El modelo logístico de propagación de una enfermedad se puede representar como:</p>
+                <p class="formula">
+                    \(I(t) = \frac{K}{1 + A \cdot e^{-rt}}\)
+                </p>
+                <p>Donde \(I(t)\) es el número de infectados en el tiempo \(t\), \(K\) es la población total, \(r\) es la tasa de crecimiento, y \(A = \frac{K - I_0}{I_0}\) donde \(I_0\) es el número inicial de infectados.</p>
+                <p>La tasa de contagio (derivada) es:</p>
+                <p class="formula">
+                    \(\frac{dI}{dt} = r \cdot I \cdot (1 - \frac{I}{K})\)
+                </p>
+            </div>
+            <div class="simulacion">
+                <h3>Simulación</h3>
+                <div class="controles">
+                    <div class="input-group">
+                        <label for="poblacion-total-input">Población total (K):</label>
+                        <input type="number" id="poblacion-total-input" min="100" max="100000" step="100" value="5000" class="form-input">
+                        <span class="input-suffix">personas</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="tasa-crecimiento-input">Tasa de crecimiento (r):</label>
+                        <input type="number" id="tasa-crecimiento-input" min="0.01" max="2" step="0.01" value="0.5" class="form-input">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="infectados-iniciales-input">Infectados iniciales (I₀):</label>
+                        <input type="number" id="infectados-iniciales-input" min="1" max="1000" step="1" value="10" class="form-input">
+                        <span class="input-suffix">personas</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="duracion-simulacion">Duración de la simulación:</label>
+                        <input type="number" id="duracion-simulacion" min="10" max="365" step="1" value="60" class="form-input">
+                        <span class="input-suffix">días</span>
+                    </div>
+                    
+                    <button id="iniciar-enfermedad" class="btn-primary">Iniciar Simulación</button>
+                </div>
+                <div class="grafico-container">
+                    <canvas id="grafico-enfermedad"></canvas>
+                </div>
+                <div class="resultados">
+                    <div class="resultado-item">
+                        <h4>Infectados actuales:</h4>
+                        <p id="infectados-actuales">0 personas</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Tasa de contagio:</h4>
+                        <p id="tasa-contagio">0 personas/día</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Tiempo hasta el pico:</h4>
+                        <p id="tiempo-pico">0 días</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Porcentaje infectado:</h4>
+                        <p id="porcentaje-infectado">0%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 6: Control de Temperatura -->
+        <section id="temperatura" class="aplicacion">
+            <h2>6. Control de Temperatura</h2>
+            <div class="teoria">
+                <h3>Fundamento Teórico</h3>
+                <p>La ley de enfriamiento de Newton establece que la tasa de cambio de la temperatura de un objeto es proporcional a la diferencia entre su temperatura y la temperatura del ambiente:</p>
+                <p class="formula">
+                    \(\frac{dT}{dt} = k(T_a - T)\)
+                </p>
+                <p>Donde \(T\) es la temperatura del objeto, \(T_a\) es la temperatura ambiente, y \(k\) es una constante de proporcionalidad.</p>
+            </div>
+            <div class="simulacion">
+                <h3>Simulación</h3>
+                <div class="controles">
+                    <label for="temp-inicial">Temperatura inicial:</label>
+                    <input type="range" id="temp-inicial" min="0" max="100" step="1" value="20">
+                    <span id="valor-temp-inicial">20°C</span>
+                    
+                    <label for="temp-ambiente">Temperatura ambiente:</label>
+                    <input type="range" id="temp-ambiente" min="0" max="40" step="1" value="25">
+                    <span id="valor-temp-ambiente">25°C</span>
+                    
+                    <label for="constante-k">Constante k:</label>
+                    <input type="range" id="constante-k" min="0.01" max="0.2" step="0.01" value="0.1">
+                    <span id="valor-constante-k">0.1</span>
+                    
+                    <button id="iniciar-temperatura">Iniciar Simulación</button>
+                </div>
+                <div class="grafico-container">
+                    <canvas id="grafico-temperatura"></canvas>
+                </div>
+                <div class="resultados">
+                    <div class="resultado-item">
+                        <h4>Temperatura actual:</h4>
+                        <p id="temp-actual">20°C</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Tasa de cambio:</h4>
+                        <p id="tasa-temperatura">0°C/min</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Tiempo hasta equilibrio:</h4>
+                        <p id="tiempo-equilibrio">0 min</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 7: Dinámica de Poblaciones -->
+        <section id="poblacion" class="aplicacion">
+            <h2>7. Dinámica de Poblaciones</h2>
+            <div class="teoria">
+                <h3>Fundamento Teórico</h3>
+                <p>El modelo logístico de crecimiento poblacional se puede expresar como:</p>
+                <p class="formula">
+                    \(\frac{dP}{dt} = rP(1 - \frac{P}{K})\)
+                </p>
+                <p>Donde \(P\) es el tamaño de la población, \(r\) es la tasa de crecimiento intrínseca, y \(K\) es la capacidad de carga del ambiente.</p>
+            </div>
+            <div class="simulacion">
+                <h3>Simulación</h3>
+                <div class="controles">
+                    <label for="poblacion-inicial">Población inicial:</label>
+                    <input type="range" id="poblacion-inicial" min="10" max="1000" step="10" value="100">
+                    <span id="valor-poblacion-inicial">100 individuos</span>
+                    
+                    <label for="tasa-intrinseca">Tasa de crecimiento (r):</label>
+                    <input type="range" id="tasa-intrinseca" min="0.1" max="2" step="0.1" value="0.5">
+                    <span id="valor-tasa-intrinseca">0.5</span>
+                    
+                    <label for="capacidad-carga">Capacidad de carga (K):</label>
+                    <input type="range" id="capacidad-carga" min="1000" max="10000" step="1000" value="5000">
+                    <span id="valor-capacidad-carga">5000 individuos</span>
+                    
+                    <button id="iniciar-poblacion">Iniciar Simulación</button>
+                </div>
+                <div class="grafico-container">
+                    <canvas id="grafico-poblacion"></canvas>
+                </div>
+                <div class="resultados">
+                    <div class="resultado-item">
+                        <h4>Población actual:</h4>
+                        <p id="poblacion-actual">100 individuos</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Tasa de crecimiento actual:</h4>
+                        <p id="tasa-crecimiento-actual">0 individuos/año</p>
+                    </div>
+                    <div class="resultado-item">
+                        <h4>Tiempo hasta equilibrio:</h4>
+                        <p id="tiempo-equilibrio-poblacion">0 años</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Aplicaciones de la Derivada. Proyecto de Cálculo.</p>
+    </footer>
+
+    <!-- Script principal -->
+    <script src="js/main.js"></script>
+    
+    <!-- Scripts de simulación -->
+    <script src="js/velocidad.js"></script>
+    <script src="js/globo.js"></script>
+    <script src="js/pitagoras.js"></script>
+    <script src="js/optimizacion.js"></script>
+    <script src="js/enfermedad.js"></script>
+    <script src="js/temperatura.js"></script>
+    <script src="js/poblacion.js"></script>
+</body>
+</html>
